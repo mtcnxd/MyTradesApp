@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             String tickerPayload = ticker.execute().get();
 
             Trades trades = new Trades();
-            ListView listViewTicker = (ListView)findViewById(R.id.listViewTicker);
+            ListView listViewTicker = findViewById(R.id.listViewTicker);
             arrayListTicker = trades.getTickerArray(tickerPayload);
             TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
             listViewTicker.setAdapter(adapter);
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 

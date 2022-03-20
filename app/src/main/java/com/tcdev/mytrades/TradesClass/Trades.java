@@ -2,9 +2,12 @@ package com.tcdev.mytrades.TradesClass;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,8 +35,7 @@ public class Trades {
             }
             in.close();
 
-            String result = response.toString();
-            return result;
+            return response.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,11 +43,20 @@ public class Trades {
         return null;
     }
 
-    public ArrayList<TradesTickerClass> getTickerArray (String payload)
-    {
+    public ArrayList<TradesTickerClass> getTickerArray (String payload) throws JSONException {
         ArrayList<TradesTickerClass> arrayList = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(payload) ;
 
-        arrayList.add(new TradesTickerClass("","Book","Price","Date","Currency"));
+        for (int i=0; i<jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            String book = jsonObject.getString("book");
+            String price = jsonObject.getString("price");
+            String date = jsonObject.getString("date");
+            String currency = jsonObject.getString("currency");
+
+            arrayList.add(new TradesTickerClass(i,book, price, date, currency));
+        }
 
         return arrayList;
     }

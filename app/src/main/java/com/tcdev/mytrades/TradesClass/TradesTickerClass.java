@@ -1,13 +1,13 @@
 package com.tcdev.mytrades.TradesClass;
 
 public class TradesTickerClass {
-    protected String id = "";
-    protected String book = "";
-    protected String price = "";
-    protected String date = "";
-    protected String currency = "";
+    protected int id;
+    protected String book;
+    protected String price;
+    protected String date;
+    protected String currency;
 
-    public TradesTickerClass(String id, String book, String price, String date, String currency){
+    public TradesTickerClass(int id, String book, String price, String date, String currency){
         this.id = id;
         this.book = book;
         this.price = price;
@@ -15,7 +15,7 @@ public class TradesTickerClass {
         this.currency = currency;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,7 +35,7 @@ public class TradesTickerClass {
         this.currency = currency;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
