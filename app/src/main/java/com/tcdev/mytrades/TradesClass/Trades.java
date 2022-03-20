@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Trades {
@@ -55,10 +56,16 @@ public class Trades {
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
 
-            arrayList.add(new TradesTickerClass(i,book, price, date, currency));
+            arrayList.add(new TradesTickerClass(i,book, convertMoney(price), date, currency));
         }
 
         return arrayList;
+    }
+
+    protected String convertMoney(String number){
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        String money = nf.format(Double.valueOf(number));
+        return money;
     }
 
 }
