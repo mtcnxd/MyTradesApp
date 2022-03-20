@@ -3,24 +3,27 @@ package com.tcdev.mytrades;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.tcdev.mytrades.classes.Bitso;
+import com.tcdev.mytrades.BitsoClass.BitsoTicker;
+import com.tcdev.mytrades.TradesClass.Trades;
+import com.tcdev.mytrades.TradesClass.TradesTicker;
+import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
+import com.tcdev.mytrades.TradesClass.TradesTickerClass;
 import com.tcdev.mytrades.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
+    private ArrayList<TradesTickerClass> arrayListTicker;
     private ActivityMainBinding binding;
 
     @Override
@@ -32,37 +35,34 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        TradesTicker ticker = new TradesTicker();
+        try {
+            String tickerPayload = ticker.execute().get();
 
-        Bitso bitso = new Bitso();
-        bitso.message(this);
+            Trades trades = new Trades();
+            ListView listViewTicker = (ListView)findViewById(R.id.listViewTicker);
+            arrayListTicker = trades.getTickerArray(tickerPayload);
+            TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
+            listViewTicker.setAdapter(adapter);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Mensaje", "Hola mundo");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-                Log.println(Log.VERBOSE, "Mensaje", "Prueba");
-
-                Snackbar.make(view, "Replace testing", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace testing", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -72,12 +72,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
