@@ -19,22 +19,6 @@ public class TradesTickerClass {
         this.id = id;
     }
 
-    public void setBook(String book) {
-        this.book = book;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
     public int getId() {
         return id;
     }

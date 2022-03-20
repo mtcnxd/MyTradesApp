@@ -13,8 +13,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Bitso {
-    protected String bitsoKey = "BLpkbWFduP";
-    protected String bitsoSecret = "34cfc69a8845fbe7832a8845895c956a";
+    protected String bitsoKey = "";
+    protected String bitsoSecret = "";
     protected String baseUrl = "https://api.bitso.com";
     protected String jsonPayload = "";
 

@@ -2,10 +2,12 @@ package com.tcdev.mytrades.TradesClass;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tcdev.mytrades.R;
@@ -58,6 +60,13 @@ public class TradesTickerAdapter extends BaseAdapter {
 
         TextView currency  = v.findViewById(R.id.currency);
         currency.setText(dir.getCurrency());
+
+        LinearLayout layout = v.findViewById(R.id.listview_item_background);
+
+        if (i%2 == 0)
+            layout.setBackgroundColor(Color.parseColor("#ffffff"));
+        else
+            layout.setBackgroundColor(Color.parseColor("#ffffff"));
 
         return v;
     }
