@@ -62,6 +62,10 @@ public class Trades {
         return arrayList;
     }
 
+    public void getStatistics (){
+
+    }
+
     protected String convertMoney(String number){
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         String money = nf.format(Double.valueOf(number));
