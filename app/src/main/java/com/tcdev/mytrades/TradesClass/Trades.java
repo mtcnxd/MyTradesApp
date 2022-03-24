@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
@@ -62,7 +63,7 @@ public class Trades {
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
 
-            arrayList.add(new TradesTickerClass(i,convertMoney(last), convertMoney(price), date, currency));
+            arrayList.add(new TradesTickerClass(i,getChangePercent(price,last), convertMoney(price), date, currency));
         }
 
         return arrayList;
@@ -71,7 +72,8 @@ public class Trades {
     protected String getChangePercent(String currentPrice, String lastPrice){
         Double change = Double.valueOf(lastPrice) - Double.valueOf(currentPrice);
         change = (change/Double.valueOf(currentPrice)) * 100;
-        return String.valueOf(change);
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(change);
     }
 
     protected String convertMoney(String number){
