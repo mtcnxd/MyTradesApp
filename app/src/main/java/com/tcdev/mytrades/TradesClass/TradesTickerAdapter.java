@@ -44,7 +44,7 @@ public class TradesTickerAdapter extends BaseAdapter {
 
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.listview_item, null);
+            v = inflater.inflate(R.layout.listview_item_mainlist, null);
         }
 
         TradesTickerClass dir = items.get(i);

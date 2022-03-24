@@ -68,8 +68,10 @@ public class Trades {
         return arrayList;
     }
 
-    public void getStatistics (){
-
+    protected String getChangePercent(String currentPrice, String lastPrice){
+        Double change = Double.valueOf(lastPrice) - Double.valueOf(currentPrice);
+        change = (change/Double.valueOf(currentPrice)) * 100;
+        return String.valueOf(change);
     }
 
     protected String convertMoney(String number){
