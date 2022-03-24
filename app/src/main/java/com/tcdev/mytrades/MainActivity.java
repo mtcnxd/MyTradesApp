@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
             TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
             listViewTicker.setAdapter(adapter);
 
+            int sizeOfPurchase = trades.getSizeOfPurchases();
+
+            Toast.makeText(this, sizeOfPurchase + " active purchases", Toast.LENGTH_SHORT).show();
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

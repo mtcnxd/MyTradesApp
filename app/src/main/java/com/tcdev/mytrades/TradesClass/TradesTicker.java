@@ -8,7 +8,7 @@ public class TradesTicker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String ... strings) {
         Trades trades = new Trades();
-        String response = trades.getTradesRequest("/api/ticker.php");
+        String response = trades.getTradesRequest("/api/wservice.php");
         return response;
     }
 }

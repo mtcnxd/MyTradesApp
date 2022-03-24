@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 public class Trades {
     protected String baseUrl = "https://test.fortech.mx";
+    protected int sizeOfPurchases = 0;
+
+    public int getSizeOfPurchases(){
+        return sizeOfPurchases;
+    }
 
     public String getTradesRequest(String RequestPath)
     {
@@ -22,7 +27,7 @@ public class Trades {
             String url = baseUrl + RequestPath;
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            con.setRequestProperty("User-Agent", "Bitso Java Application");
+            con.setRequestProperty("User-Agent", "Android Trades Application");
             con.setRequestMethod("GET");
 
             InputStreamReader input = new InputStreamReader(con.getInputStream());
@@ -48,10 +53,11 @@ public class Trades {
         ArrayList<TradesTickerClass> arrayList = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(payload) ;
 
+        sizeOfPurchases = jsonArray.length();
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            String book = jsonObject.getString("book");
+            String book = jsonObject.getString("last");
             String price = jsonObject.getString("price");
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
