@@ -58,22 +58,22 @@ public class Trades {
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            String last = jsonObject.getString("last");
-            String price = jsonObject.getString("price");
+            String current = jsonObject.getString("last");
+            String last = jsonObject.getString("price");
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
 
-            arrayList.add(new TradesTickerClass(i,getChangePercent(price,last), convertMoney(price), date, currency));
+            arrayList.add(new TradesTickerClass(i,getChangePercent(current,last)+"%", convertMoney(last), date, currency));
         }
 
         return arrayList;
     }
 
     protected String getChangePercent(String currentPrice, String lastPrice){
-        Double change = Double.valueOf(lastPrice) - Double.valueOf(currentPrice);
-        change = (change/Double.valueOf(currentPrice)) * 100;
+        Double change  = Double.valueOf(currentPrice) - Double.valueOf(lastPrice);
+        Double percent = (change/Double.valueOf(currentPrice)) * 100;
         DecimalFormat df = new DecimalFormat("#.00");
-        return df.format(change);
+        return df.format(percent);
     }
 
     protected String convertMoney(String number){
