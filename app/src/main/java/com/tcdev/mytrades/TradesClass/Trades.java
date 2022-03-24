@@ -57,12 +57,12 @@ public class Trades {
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            String book = jsonObject.getString("last");
+            String last = jsonObject.getString("last");
             String price = jsonObject.getString("price");
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
 
-            arrayList.add(new TradesTickerClass(i,book, convertMoney(price), date, currency));
+            arrayList.add(new TradesTickerClass(i,convertMoney(last), convertMoney(price), date, currency));
         }
 
         return arrayList;
