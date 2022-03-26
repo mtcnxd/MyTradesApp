@@ -3,14 +3,16 @@ package com.tcdev.mytrades.TradesClass;
 public class TradesTickerClass {
     protected int id;
     protected String book;
-    protected String price;
+    protected String current;
+    protected String last;
     protected String date;
     protected String currency;
 
-    public TradesTickerClass(int id, String book, String price, String date, String currency){
+    public TradesTickerClass(int id, String book, String current, String last, String date, String currency){
         this.id = id;
         this.book = book;
-        this.price = price;
+        this.current = current;
+        this.last = last;
         this.date = date;
         this.currency = currency;
     }
@@ -27,8 +29,12 @@ public class TradesTickerClass {
         return book;
     }
 
-    public String getPrice() {
-        return price;
+    public String getCurrent() {
+        return current;
+    }
+
+    public String getLast() {
+        return last;
     }
 
     public String getDate() {

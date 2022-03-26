@@ -6,7 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.tcdev.mytrades.TradesClass.Trades;
-import com.tcdev.mytrades.TradesClass.TradesTicker;
+import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
 import com.tcdev.mytrades.TradesClass.TradesTickerClass;
 import com.tcdev.mytrades.databinding.ActivityMainBinding;
@@ -34,18 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        TradesTicker ticker = new TradesTicker();
+        ListView listViewTicker = findViewById(R.id.listViewTicker);
+        listViewTicker.setDivider(null);
+
         try {
-            String tickerPayload = ticker.execute().get();
+            TradesAsyncTask asyncTask = new TradesAsyncTask();
+            asyncTask.setURLPath("/api/wservice.php");
+            String payload = asyncTask.execute().get();
 
             Trades trades = new Trades();
-            ListView listViewTicker = findViewById(R.id.listViewTicker);
-            arrayListTicker = trades.getTickerArray(tickerPayload);
+            arrayListTicker = trades.getTickerArray(payload);
+
             TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
             listViewTicker.setAdapter(adapter);
 
             int sizeOfPurchase = trades.getSizeOfPurchases();
-
             Toast.makeText(this, sizeOfPurchase + " active purchases", Toast.LENGTH_SHORT).show();
 
         } catch (ExecutionException e) {

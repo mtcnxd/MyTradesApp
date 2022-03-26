@@ -52,8 +52,11 @@ public class TradesTickerAdapter extends BaseAdapter {
         TextView book = v.findViewById(R.id.book);
         book.setText(dir.getBook());
 
-        TextView price = v.findViewById(R.id.price);
-        price.setText(dir.getPrice());
+        TextView price = v.findViewById(R.id.current);
+        price.setText(dir.getCurrent());
+
+        TextView last = v.findViewById(R.id.last);
+        last.setText(dir.getLast());
 
         TextView date = v.findViewById(R.id.date);
         date.setText(dir.getDate());
@@ -64,7 +67,7 @@ public class TradesTickerAdapter extends BaseAdapter {
         LinearLayout layout = v.findViewById(R.id.listview_item_background);
 
         if (i%2 == 0)
-            layout.setBackgroundColor(Color.parseColor("#ffffff"));
+            layout.setBackgroundColor(Color.parseColor("#F5F5F5"));
         else
             layout.setBackgroundColor(Color.parseColor("#ffffff"));
 

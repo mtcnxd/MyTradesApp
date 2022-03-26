@@ -58,20 +58,43 @@ public class Trades {
         for (int i=0; i<jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            String current = jsonObject.getString("last");
-            String last = jsonObject.getString("price");
+            String current = jsonObject.getString("current");
+            String last = jsonObject.getString("last");
             String date = jsonObject.getString("date");
             String currency = jsonObject.getString("currency");
 
-            arrayList.add(new TradesTickerClass(i,getChangePercent(current,last)+"%", convertMoney(last), date, currency));
+            arrayList.add(new TradesTickerClass(i,getChangePercent(current,last)+"%",convertMoney(current), convertMoney(last), date, currency));
         }
 
         return arrayList;
     }
 
-    protected String getChangePercent(String currentPrice, String lastPrice){
-        Double change  = Double.valueOf(currentPrice) - Double.valueOf(lastPrice);
-        Double percent = (change/Double.valueOf(currentPrice)) * 100;
+    public ArrayList<TradesStatisticsClass> getStatisticsArray(String payload){
+        ArrayList<TradesStatisticsClass> arrayList = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(payload);
+            for (int i = 0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                String key1 = jsonObject.getString("key1");
+                String value1 = jsonObject.getString("value1");
+                String key2 = jsonObject.getString("key2");
+                String value2 = jsonObject.getString("value2");
+
+                arrayList.add(new TradesStatisticsClass(key1,value1,key2,value2));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return arrayList;
+    }
+
+    protected String getChangePercent(String current, String last){
+        Double change  = Double.valueOf(current) - Double.valueOf(last);
+        Double percent = (change/Double.valueOf(current)) * 100;
         DecimalFormat df = new DecimalFormat("#.00");
         return df.format(percent);
     }

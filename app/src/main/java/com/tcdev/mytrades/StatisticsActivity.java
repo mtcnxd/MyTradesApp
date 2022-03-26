@@ -1,16 +1,22 @@
 package com.tcdev.mytrades;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.tcdev.mytrades.BitsoClass.Bitso;
 import com.tcdev.mytrades.TradesClass.Trades;
+import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
 import com.tcdev.mytrades.TradesClass.TradesStatisticsAdapter;
 import com.tcdev.mytrades.TradesClass.TradesStatisticsClass;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class StatisticsActivity extends AppCompatActivity {
+
+    ArrayList<TradesStatisticsClass> arrayListStatistics = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +24,25 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         ListView listView = findViewById(R.id.ListViewStatistics);
+        listView.setDivider(null);
 
-        ArrayList<TradesStatisticsClass> arrayListStatistics = new ArrayList<>();
-        arrayListStatistics.add(new TradesStatisticsClass("CURRENT PERFORMANCE","0.06%","PERFORMANCE LAST 24 HOURS","1.13%"));
-        arrayListStatistics.add(new TradesStatisticsClass("BUYING POWER (0.00%)","$0.12","TOTAL WALLET","$30,622.62"));
-        arrayListStatistics.add(new TradesStatisticsClass("CURRENT PERFORMANCE","0.06%","PERFORMANCE LAST 24 HOURS","1.13%"));
-        arrayListStatistics.add(new TradesStatisticsClass("BUYING POWER (0.00%)","$0.12","TOTAL WALLET","$30,622.62"));
+        try {
+            TradesAsyncTask asyncTask = new TradesAsyncTask();
+            asyncTask.setURLPath("/api/statistics.php");
+            String payload = asyncTask.execute().get();
 
-        TradesStatisticsAdapter adapter = new TradesStatisticsAdapter(this, arrayListStatistics);
-        listView.setAdapter(adapter);
+            Trades trades = new Trades();
+            arrayListStatistics = trades.getStatisticsArray(payload);
+
+            TradesStatisticsAdapter adapter = new TradesStatisticsAdapter(this, arrayListStatistics);
+            listView.setAdapter(adapter);
+
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
