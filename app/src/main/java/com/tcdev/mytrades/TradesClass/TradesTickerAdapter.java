@@ -3,6 +3,7 @@ package com.tcdev.mytrades.TradesClass;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,8 +50,17 @@ public class TradesTickerAdapter extends BaseAdapter {
 
         TradesTickerClass dir = items.get(i);
 
-        TextView book = v.findViewById(R.id.book);
-        book.setText(dir.getBook());
+        TextView percent = v.findViewById(R.id.percent);
+        percent.setText(dir.getPercent());
+
+        String changePercent = dir.getPercent();
+        changePercent = changePercent.replace('%','0');
+
+        if(Double.valueOf(changePercent) < 0) {
+            percent.setTextColor(Color.parseColor("#ff0000"));
+        } else {
+            percent.setTextColor(Color.parseColor("#2e7d32"));
+        }
 
         TextView price = v.findViewById(R.id.current);
         price.setText(dir.getCurrent());

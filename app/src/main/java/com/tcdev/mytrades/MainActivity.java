@@ -3,8 +3,8 @@ package com.tcdev.mytrades;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-
 import com.tcdev.mytrades.TradesClass.Trades;
 import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
@@ -14,9 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -34,6 +32,26 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
+        loadListViewTicker();
+
+        SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
+        swipeRefresh.setOnRefreshListener(
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadListViewTicker();
+                    swipeRefresh.setRefreshing(false);
+                }
+            }
+        );
+
+        binding.fab.setOnClickListener(view -> {
+            Snackbar.make(view, "Replace testing", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        });
+    }
+
+    public void loadListViewTicker (){
         ListView listViewTicker = findViewById(R.id.listViewTicker);
         listViewTicker.setDivider(null);
 
@@ -58,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace testing", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
     }
 
     @Override

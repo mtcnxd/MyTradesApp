@@ -1,6 +1,7 @@
 package com.tcdev.mytrades;
 
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -22,6 +23,24 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        loadListViewStatistics();
+
+        SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
+
+        swipeRefresh.setOnRefreshListener(
+            new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    loadListViewStatistics();
+                    swipeRefresh.setRefreshing(false);
+                }
+            }
+        );
+
+    }
+
+    public void loadListViewStatistics(){
 
         ListView listView = findViewById(R.id.ListViewStatistics);
         listView.setDivider(null);

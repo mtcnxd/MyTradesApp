@@ -46,7 +46,7 @@
                 <TextView
                     android:id="@+id/last"
                     android:text="Last"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textAlignment="textEnd"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -55,7 +55,7 @@
                 <TextView
                     android:id="@+id/current"
                     android:text="Current"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textAlignment="textEnd"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -78,10 +78,11 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/book"
+                    android:id="@+id/percent"
                     android:text="Book"
                     android:textSize="14dp"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:textAlignment="textEnd"
                     android:layout_weight="1"
                     android:layout_width="0dp"
