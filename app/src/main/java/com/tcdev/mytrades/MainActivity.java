@@ -1,15 +1,10 @@
 package com.tcdev.mytrades;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.SnackbarContentLayout;
 import android.support.v7.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import com.tcdev.mytrades.BitsoClass.BitsoTicker;
+
 import com.tcdev.mytrades.TradesClass.Trades;
 import com.tcdev.mytrades.TradesClass.TradesTicker;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
@@ -73,12 +68,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.action_ticker:
+                Toast.makeText(this, "Ticker", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.action_statistics:
+                Toast.makeText(this, "Loading statistics ...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
