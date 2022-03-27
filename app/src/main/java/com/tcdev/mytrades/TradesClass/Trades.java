@@ -13,6 +13,9 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import lecho.lib.hellocharts.model.PointValue;
 
 public class Trades {
     protected String baseUrl = "https://test.fortech.mx";
@@ -90,6 +93,19 @@ public class Trades {
         }
 
         return arrayList;
+    }
+
+    public List<PointValue> getChartDataBalances(String payload) throws JSONException {
+        List<PointValue> values = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(payload);
+
+        for(int i=0; i<jsonArray.length(); i++){
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String amount = jsonObject.getString("amount");
+            values.add(new PointValue(i, Float.valueOf(amount)));
+        }
+
+        return values;
     }
 
     protected String getChangePercent(String current, String last){

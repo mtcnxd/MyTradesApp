@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="0dp" >
 
         <ListView
             android:id="@+id/ListViewStatistics"
@@ -15,5 +17,12 @@
         </ListView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <lecho.lib.hellocharts.view.LineChartView
+        android:layout_weight="1"
+        android:id="@+id/balanceHistory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="5dp"/>
 
 </LinearLayout>
