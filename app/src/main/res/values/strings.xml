@@ -4,6 +4,7 @@
     <string name="action_ticker">Ticker</string>
     <string name="action_statistics">Statistics</string>
     <string name="action_history">History</string>
+    <string name="action_balance">Balance</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

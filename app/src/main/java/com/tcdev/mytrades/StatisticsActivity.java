@@ -89,7 +89,7 @@ public class StatisticsActivity extends AppCompatActivity {
             List<PointValue> values = trades.getChartDataBalances(payload);
 
             Line line = new Line(values);
-            line.setColor(Color.BLUE);
+            line.setColor(Color.parseColor("#0dcaf0"));
             line.setCubic(true);
             line.setFilled(true);
             line.setStrokeWidth(1);
@@ -97,11 +97,9 @@ public class StatisticsActivity extends AppCompatActivity {
 
             Axis axisX = new Axis();
             axisX.setHasLines(true);
-            axisX.setName("Money");
 
             Axis axisY = new Axis();
             axisY.setHasLines(true);
-            axisY.setName("Time line");
 
             List<Line> lines = new ArrayList();
             lines.add(line);

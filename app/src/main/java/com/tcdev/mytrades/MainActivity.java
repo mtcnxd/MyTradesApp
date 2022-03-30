@@ -1,6 +1,7 @@
 package com.tcdev.mytrades;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,7 +17,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 import org.json.JSONException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.view.LineChartView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         loadListViewTicker();
+        loadBalanceHistory();
 
         SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
         swipeRefresh.setOnRefreshListener(
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onRefresh() {
                     loadListViewTicker();
+                    loadBalanceHistory();
                     swipeRefresh.setRefreshing(false);
                 }
             }
@@ -106,4 +116,50 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void loadBalanceHistory(){
+        try {
+            TradesAsyncTask asyncTask = new TradesAsyncTask();
+            asyncTask.setURLPath("/api/chartdata.php");
+            String payload = asyncTask.execute().get();
+
+            LineChartView chartView = findViewById(R.id.balanceHistory);
+
+            Trades trades = new Trades();
+            List<PointValue> values = trades.getChartDataBalances(payload);
+
+            Line line = new Line(values);
+            line.setColor(Color.parseColor("#fcba03"));
+            line.setCubic(true);
+            line.setFilled(true);
+            line.setStrokeWidth(1);
+            line.setPointRadius(2);
+
+            Axis axisX = new Axis();
+            axisX.setHasLines(true);
+
+            Axis axisY = new Axis();
+            axisY.setHasLines(true);
+
+            List<Line> lines = new ArrayList();
+            lines.add(line);
+
+            LineChartData data = new LineChartData(lines);
+            data.setLines(lines);
+            //data.setAxisYLeft(axisX);
+            data.setAxisXBottom(axisY);
+
+            LineChartView chart = new LineChartView(this);
+            chart.setLineChartData(data);
+            chartView.setLineChartData(data);
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
