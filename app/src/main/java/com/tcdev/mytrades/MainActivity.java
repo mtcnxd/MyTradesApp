@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        Intent intent;
 
         switch (id) {
             case R.id.action_settings:
@@ -109,7 +110,13 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_statistics:
                 Toast.makeText(this, "Loading statistics ...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, StatisticsActivity.class);
+                intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.action_balance:
+                Toast.makeText(this, "Loading balance ...", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, BalanceActivity.class);
                 startActivity(intent);
                 break;
         }

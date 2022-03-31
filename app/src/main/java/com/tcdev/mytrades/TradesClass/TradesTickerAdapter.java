@@ -59,7 +59,7 @@ public class TradesTickerAdapter extends BaseAdapter {
         if(Double.valueOf(changePercent) < 0) {
             percent.setTextColor(Color.parseColor("#ff0000"));
         } else {
-            percent.setTextColor(Color.parseColor("#51ff00"));
+            percent.setTextColor(Color.parseColor("#198754"));
         }
 
         TextView price = v.findViewById(R.id.current);
