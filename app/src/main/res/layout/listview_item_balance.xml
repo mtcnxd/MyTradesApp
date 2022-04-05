@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/current"
+                    android:id="@+id/value"
                     android:text="Value"
                     android:textSize="14dp"
                     android:textColor="@color/black"
@@ -62,7 +62,7 @@
                 android:padding="3dp">
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/amount"
                     android:text="Amount"
                     android:textSize="14dp"
                     android:layout_weight="1"

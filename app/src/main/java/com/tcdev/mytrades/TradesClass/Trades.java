@@ -98,7 +98,23 @@ public class Trades {
     public ArrayList<TradesBalanceClass> getBalanceArray(String payload) {
         ArrayList<TradesBalanceClass> arrayList = new ArrayList<>();
 
-        return null;
+        try {
+            JSONArray jsonArray = new JSONArray(payload);
+            for(int i=0; i<jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                String currency = jsonObject.getString("currency");
+                String amount = jsonObject.getString("amount");
+                String value = jsonObject.getString("value");
+
+                arrayList.add(new TradesBalanceClass("Bitcoin","0.004","500"));
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return arrayList;
     }
 
     public List<PointValue> getChartDataBalances(String payload) throws JSONException {

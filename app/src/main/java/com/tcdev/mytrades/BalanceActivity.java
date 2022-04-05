@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.tcdev.mytrades.TradesClass.Trades;
 import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
+import com.tcdev.mytrades.TradesClass.TradesBalanceAdapter;
 import com.tcdev.mytrades.TradesClass.TradesBalanceClass;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
 import com.tcdev.mytrades.TradesClass.TradesTickerClass;
@@ -42,8 +43,8 @@ public class BalanceActivity extends AppCompatActivity {
             Trades trades = new Trades();
             arrayListBalance = trades.getBalanceArray(payload);
 
-            //TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
-            //listViewTicker.setAdapter(adapter);
+            TradesBalanceAdapter adapter = new TradesBalanceAdapter (this, arrayListBalance);
+            listViewBalance.setAdapter(adapter);
 
             int sizeOfPurchase = trades.getSizeOfPurchases();
             Toast.makeText(this, sizeOfPurchase + " active purchases", Toast.LENGTH_SHORT).show();
