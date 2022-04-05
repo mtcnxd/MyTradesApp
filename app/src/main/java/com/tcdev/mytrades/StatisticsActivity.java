@@ -37,7 +37,6 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
 
         loadListViewStatistics();
-        loadBalanceHistory();
 
         SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
 
@@ -46,7 +45,6 @@ public class StatisticsActivity extends AppCompatActivity {
                 @Override
                 public void onRefresh() {
                     loadListViewStatistics();
-                    loadBalanceHistory();
                     swipeRefresh.setRefreshing(false);
                 }
             }
@@ -72,52 +70,6 @@ public class StatisticsActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void loadBalanceHistory(){
-        try {
-            TradesAsyncTask asyncTask = new TradesAsyncTask();
-            asyncTask.setURLPath("/api/chartdata.php");
-            String payload = asyncTask.execute().get();
-
-            LineChartView chartView = findViewById(R.id.balanceHistory);
-
-            Trades trades = new Trades();
-            List<PointValue> values = trades.getChartDataBalances(payload);
-
-            Line line = new Line(values);
-            line.setColor(Color.parseColor("#0dcaf0"));
-            line.setCubic(true);
-            line.setFilled(true);
-            line.setStrokeWidth(1);
-            line.setPointRadius(2);
-
-            Axis axisX = new Axis();
-            axisX.setHasLines(true);
-
-            Axis axisY = new Axis();
-            axisY.setHasLines(true);
-
-            List<Line> lines = new ArrayList();
-            lines.add(line);
-
-            LineChartData data = new LineChartData(lines);
-            data.setLines(lines);
-            data.setAxisYLeft(axisX);
-            data.setAxisXBottom(axisY);
-
-            LineChartView chart = new LineChartView(this);
-            chart.setLineChartData(data);
-            chartView.setLineChartData(data);
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

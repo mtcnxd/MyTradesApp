@@ -18,11 +18,4 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:layout_weight="1"
-        android:id="@+id/balanceHistory"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="5dp"/>
-
 </LinearLayout>
