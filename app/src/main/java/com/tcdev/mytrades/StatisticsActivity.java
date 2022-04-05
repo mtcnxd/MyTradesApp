@@ -54,7 +54,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void loadListViewStatistics(){
-        ListView listView = findViewById(R.id.ListViewStatistics);
+        ListView listView = findViewById(R.id.listViewStatistics);
         listView.setDivider(null);
 
         try {
