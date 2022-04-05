@@ -95,6 +95,12 @@ public class Trades {
         return arrayList;
     }
 
+    public ArrayList<TradesBalanceClass> getBalanceArray(String payload) {
+        ArrayList<TradesBalanceClass> arrayList = new ArrayList<>();
+
+        return null;
+    }
+
     public List<PointValue> getChartDataBalances(String payload) throws JSONException {
         List<PointValue> values = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(payload);
@@ -120,5 +126,4 @@ public class Trades {
         String money = nf.format(Double.valueOf(number));
         return money;
     }
-
 }

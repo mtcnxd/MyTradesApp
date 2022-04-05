@@ -8,13 +8,17 @@ import android.widget.Toast;
 
 import com.tcdev.mytrades.TradesClass.Trades;
 import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
+import com.tcdev.mytrades.TradesClass.TradesBalanceClass;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
+import com.tcdev.mytrades.TradesClass.TradesTickerClass;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class BalanceActivity extends AppCompatActivity {
+    private ArrayList<TradesBalanceClass> arrayListBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +29,8 @@ public class BalanceActivity extends AppCompatActivity {
     }
 
     public void loadListViewBalance (){
-        ListView listViewTicker = findViewById(R.id.listViewBalance);
-        listViewTicker.setDivider(null);
+        ListView listViewBalance = findViewById(R.id.listViewBalance);
+        listViewBalance.setDivider(null);
 
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
@@ -36,7 +40,7 @@ public class BalanceActivity extends AppCompatActivity {
             Log.d("Mensaje","Payload: " + payload);
 
             Trades trades = new Trades();
-            //arrayListTicker = trades.getTickerArray(payload);
+            arrayListBalance = trades.getBalanceArray(payload);
 
             //TradesTickerAdapter adapter = new TradesTickerAdapter (this, arrayListTicker);
             //listViewTicker.setAdapter(adapter);
