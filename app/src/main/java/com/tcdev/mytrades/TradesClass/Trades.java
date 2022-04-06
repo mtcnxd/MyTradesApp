@@ -8,8 +8,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -25,14 +28,15 @@ public class Trades {
         return sizeOfPurchases;
     }
 
-    public String getTradesRequest(String RequestPath)
+    public String getTradesRequest(String RequestPath, String request)
     {
         try {
-            String url = baseUrl + RequestPath;
+            String url = baseUrl + RequestPath + "?request=" + request;
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestProperty("User-Agent", "Android Trades Application");
-            con.setRequestMethod("GET");
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
 
             InputStreamReader input = new InputStreamReader(con.getInputStream());
             BufferedReader in = new BufferedReader(input);
@@ -100,12 +104,13 @@ public class Trades {
 
         try {
             JSONArray jsonArray = new JSONArray(payload);
+
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                String currency = jsonObject.getString("currency");
-                String amount = jsonObject.getString("amount");
-                String value = jsonObject.getString("value");
+                String currency = jsonObject.getString("book");
+                String amount = jsonObject.getString("date");
+                String value = jsonObject.getString("current");
 
                 arrayList.add(new TradesBalanceClass("Bitcoin","0.004","500"));
 

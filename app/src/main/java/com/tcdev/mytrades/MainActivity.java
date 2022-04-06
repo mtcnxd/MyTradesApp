@@ -11,6 +11,8 @@ import com.tcdev.mytrades.TradesClass.TradesAsyncTask;
 import com.tcdev.mytrades.TradesClass.TradesTickerAdapter;
 import com.tcdev.mytrades.TradesClass.TradesTickerClass;
 import com.tcdev.mytrades.databinding.ActivityMainBinding;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -28,7 +30,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<TradesTickerClass> arrayListTicker;
+    private ArrayList<TradesTickerClass> arrayListTicker = new ArrayList<>();
     private ActivityMainBinding binding;
 
     @Override
@@ -67,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
-            asyncTask.setURLPath("/api/wservice.php");
+            asyncTask.setPath("/api/wservice.php");
+            asyncTask.setData("mainList");
             String payload = asyncTask.execute().get();
+
 
             Trades trades = new Trades();
             arrayListTicker = trades.getTickerArray(payload);
@@ -127,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
     public void loadBalanceHistory(){
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
-            asyncTask.setURLPath("/api/chartdata.php");
+            asyncTask.setPath("/api/wservice.php");
+            asyncTask.setData("chartdata");
             String payload = asyncTask.execute().get();
 
             LineChartView chartView = findViewById(R.id.balanceHistory);

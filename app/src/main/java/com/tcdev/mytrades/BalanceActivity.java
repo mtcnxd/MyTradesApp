@@ -1,5 +1,6 @@
 package com.tcdev.mytrades;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,18 +28,29 @@ public class BalanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_balance);
 
         loadListViewBalance();
+
+        SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
+        swipeRefresh.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        loadListViewBalance();
+                        swipeRefresh.setRefreshing(false);
+                    }
+                }
+        );
+
     }
 
-    public void loadListViewBalance (){
+    public void loadListViewBalance(){
         ListView listViewBalance = findViewById(R.id.listViewBalance);
         listViewBalance.setDivider(null);
 
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
-            asyncTask.setURLPath("/api/wservice.php");
+            asyncTask.setPath("/api/wservice.php");
+            asyncTask.setData("balance");
             String payload = asyncTask.execute().get();
-
-            Log.d("Mensaje","Payload: " + payload);
 
             Trades trades = new Trades();
             arrayListBalance = trades.getBalanceArray(payload);

@@ -57,7 +57,8 @@ public class StatisticsActivity extends AppCompatActivity {
 
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
-            asyncTask.setURLPath("/api/statistics.php");
+            asyncTask.setPath("/api/wservice.php");
+            asyncTask.setData("statistics");
             String payload = asyncTask.execute().get();
 
             Trades trades = new Trades();
