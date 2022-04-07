@@ -1,5 +1,6 @@
 package com.tcdev.mytrades;
 
+import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,19 @@ import com.tcdev.mytrades.TradesClass.TradesTickerClass;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.ColumnChartView;
+import lecho.lib.hellocharts.view.LineChartView;
 
 public class BalanceActivity extends AppCompatActivity {
     private ArrayList<TradesBalanceClass> arrayListBalance;
@@ -28,6 +41,7 @@ public class BalanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_balance);
 
         loadListViewBalance();
+        loadBalanceGraph();
 
         SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
         swipeRefresh.setOnRefreshListener(
@@ -49,7 +63,7 @@ public class BalanceActivity extends AppCompatActivity {
         try {
             TradesAsyncTask asyncTask = new TradesAsyncTask();
             asyncTask.setPath("/api/wservice.php");
-            asyncTask.setData("balance");
+            asyncTask.setData("balances");
             String payload = asyncTask.execute().get();
 
             Trades trades = new Trades();
@@ -66,5 +80,27 @@ public class BalanceActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void loadBalanceGraph(){
+        ColumnChartView chartView = findViewById(R.id.balanceGraph);
+
+        List<Column> columns = new ArrayList<>();
+        List<SubcolumnValue> values = new ArrayList<>();
+
+        values.add(new SubcolumnValue(10, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(15, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(12, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(10, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(15, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(12, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(12, ChartUtils.pickColor()));
+        values.add(new SubcolumnValue(10, ChartUtils.pickColor()));
+
+        Column column = new Column(values);
+        columns.add(column);
+
+        ColumnChartData data = new ColumnChartData(columns);
+        chartView.setColumnChartData(data);
     }
 }

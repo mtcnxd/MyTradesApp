@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import lecho.lib.hellocharts.model.PointValue;
 
@@ -102,17 +103,17 @@ public class Trades {
     public ArrayList<TradesBalanceClass> getBalanceArray(String payload) {
         ArrayList<TradesBalanceClass> arrayList = new ArrayList<>();
 
+        Log.d("Mensaje", "JSON: " + payload);
         try {
             JSONArray jsonArray = new JSONArray(payload);
-
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                String currency = jsonObject.getString("book");
-                String amount = jsonObject.getString("date");
-                String value = jsonObject.getString("current");
+                String currency = jsonObject.getString("currency");
+                String amount = jsonObject.getString("amount");
+                String value = jsonObject.getString("value");
 
-                arrayList.add(new TradesBalanceClass("Bitcoin","0.004","500"));
+                arrayList.add(new TradesBalanceClass(currency.toUpperCase(),amount,convertMoney(value)));
 
             }
         } catch (JSONException e) {

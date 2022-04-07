@@ -7,7 +7,7 @@
     tools:context=".BalanceActivity">
 
     <lecho.lib.hellocharts.view.ColumnChartView
-        android:id="@+id/balanceHistory"
+        android:id="@+id/balanceGraph"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:padding="15dp"/>

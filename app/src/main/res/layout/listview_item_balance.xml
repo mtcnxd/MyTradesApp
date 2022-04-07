@@ -37,8 +37,9 @@
                 <TextView
                     android:id="@+id/currency"
                     android:text="Currency"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
@@ -46,7 +47,7 @@
                 <TextView
                     android:id="@+id/value"
                     android:text="Value"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@color/black"
                     android:textAlignment="textEnd"
                     android:layout_weight="1"

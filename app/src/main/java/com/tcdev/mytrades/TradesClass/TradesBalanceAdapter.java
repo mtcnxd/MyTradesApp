@@ -54,7 +54,7 @@ public class TradesBalanceAdapter extends BaseAdapter {
         amount.setText(dir.getAmount());
 
         TextView value = v.findViewById(R.id.value);
-        amount.setText(dir.getValue());
+        value.setText(dir.getValue());
 
         return v;
     }
