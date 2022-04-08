@@ -1,31 +1,19 @@
 package com.tcdev.mytrades.TradesClass;
 
 public class TradesStatisticsClass {
-    String keyLeft = "";
-    String valueLeft = "";
-    String keyRight = "";
-    String valueRight = "";
+    String key = "";
+    String value = "";
 
-    public TradesStatisticsClass(String keyLeft, String valueLeft, String keyRight, String valueRight){
-        this.keyLeft = keyLeft;
-        this.valueLeft = valueLeft;
-        this.keyRight = keyRight;
-        this.valueRight = valueRight;
+    public TradesStatisticsClass(String key, String value){
+        this.key = key;
+        this.value = value;
     }
 
-    public String getKeyLeft() {
-        return keyLeft;
+    public String getKey() {
+        return key;
     }
 
-    public String getValueLeft() {
-        return valueLeft;
-    }
-
-    public String getKeyRight() {
-        return keyRight;
-    }
-
-    public String getValueRight() {
-        return valueRight;
+    public String getValue() {
+        return value;
     }
 }

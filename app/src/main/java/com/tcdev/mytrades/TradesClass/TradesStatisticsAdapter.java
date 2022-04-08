@@ -50,17 +50,11 @@ public class TradesStatisticsAdapter extends BaseAdapter {
 
         TradesStatisticsClass dir = items.get(i);
 
-        TextView book = v.findViewById(R.id.key_left);
-        book.setText(dir.getKeyLeft());
+        TextView book = v.findViewById(R.id.key);
+        book.setText(dir.getKey());
 
-        TextView price = v.findViewById(R.id.value_left);
-        price.setText(dir.getValueLeft());
-
-        TextView date = v.findViewById(R.id.key_right);
-        date.setText(dir.getKeyRight());
-
-        TextView currency  = v.findViewById(R.id.value_right);
-        currency.setText(dir.getValueRight());
+        TextView price = v.findViewById(R.id.value);
+        price.setText(dir.getValue());
 
         return v;
     }

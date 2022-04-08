@@ -2,25 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#F5F5F5">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/item_statistic_background">
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="6dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:background="@drawable/item_statistic_background">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/key_left"
+                android:id="@+id/key"
                 android:text="PERFORMANCE LAS 24 HRS"
                 android:textSize="10dp"
                 android:textStyle="bold"
@@ -30,39 +45,8 @@
                 android:paddingBottom="5dp"/>
 
             <TextView
-                android:id="@+id/value_left"
+                android:id="@+id/value"
                 android:text="-1.47%"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="6dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:background="@drawable/item_statistic_background">
-
-            <TextView
-                android:id="@+id/key_right"
-                android:text="BUYING POWER"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/value_right"
-                android:text="$0.12"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textAlignment="center"

@@ -1,6 +1,7 @@
 package com.tcdev.mytrades.TradesClass;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class TradesAsyncTask extends AsyncTask<String, String, String> {
 
@@ -19,6 +20,7 @@ public class TradesAsyncTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String ... strings) {
         Trades trades = new Trades();
         String response = trades.getTradesRequest(path, data);
+        Log.d("Mensaje", "doInBackground: " + response);
         return response;
     }
 }

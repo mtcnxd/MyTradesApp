@@ -123,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, BalanceActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.action_history:
+                Toast.makeText(this, "Loading history ...", Toast.LENGTH_SHORT).show();
+                intent = new Intent(this, HistoryActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

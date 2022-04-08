@@ -14,5 +14,6 @@
     </style>
 
     <style name="Theme.MyTrades.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.MyTrades.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

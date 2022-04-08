@@ -85,12 +85,10 @@ public class Trades {
             for (int i = 0; i<jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                String key1 = jsonObject.getString("key1");
-                String value1 = jsonObject.getString("value1");
-                String key2 = jsonObject.getString("key2");
-                String value2 = jsonObject.getString("value2");
+                String key = jsonObject.getString("key");
+                String value = jsonObject.getString("value");
 
-                arrayList.add(new TradesStatisticsClass(key1,value1,key2,value2));
+                arrayList.add(new TradesStatisticsClass(key, value));
             }
 
         } catch (JSONException e) {
