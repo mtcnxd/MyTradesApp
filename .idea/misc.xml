@@ -4,12 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/item_statistic_background.xml" value="0.178" />
+        <entry key="app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.158984375" />
+        <entry key="app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.14765625" />
+        <entry key="app/src/main/res/layout/activity_balance.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_history.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_scrolling.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_statistics2.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/include_statistics.xml" value="0.22" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/listview_item_mainlist.xml" value="0.196875" />
-        <entry key="app/src/main/res/layout/listview_item_statistics.xml" value="0.47741273100616016" />
+        <entry key="app/src/main/res/layout/listview_item_balance.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/listview_item_mainlist.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/listview_item_statistics.xml" value="0.33" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.196875" />
       </map>
     </option>

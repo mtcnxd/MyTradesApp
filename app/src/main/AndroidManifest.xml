@@ -12,25 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTrades">
         <activity
-            android:name=".HistoryActivity"
-            android:exported="false"
-            android:label="@string/title_activity_history"
-            android:theme="@style/Theme.MyTrades.NoActionBar" />
-        <activity
-            android:name=".BalanceActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyTrades.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StatisticsActivity" />
+
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false"
+            android:label="@string/title_activity_history"
+            android:theme="@style/Theme.MyTrades.NoActionBar" />
+
+        <activity
+            android:name=".BalanceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_balance" />
+
+        <activity
+            android:name=".StatisticsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
